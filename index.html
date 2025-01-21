@@ -5,68 +5,73 @@
 
   </head>
   <body>
-    <a-scene  >
+    <a-scene fog="type: exponential; color: #000; density: 0.3" vr-mode-ui="enabled: true">
+        <a-animation attribute="position" to="0 1.6 -5" dur="5000" repeat="indefinite"></a-animation>
         
-
-      
+          <!-- Caméra simple avec position définie -->
+  <a-camera position="0 1.6 5"></a-camera>
 
       <!-- salle 1 - chambre -->
 
-       <!-- sol -->
+       <a-entity 
+       gltf-model="./assets/solm.glb" 
+       position="-4.687 -0.422 -0.580" 
+       rotation="0 0 0" 
+       scale="1.4 1.5 1">
+     </a-entity>
 
-       <a-plane position="0 0 -4" rotation="-90 0 0" width="7" height="7" color="" material="src: ./assets/wooden.jpg"></a-plane>></a-plane> 
 
-      <!-- plafond -->
+      <a-entity 
+      gltf-model="./assets/mur2.glb" 
+      position="-4.260 -0.019 -7.607" 
+      rotation="0.000 90 0" 
+      scale="0.75 0.5 0.75">
+    </a-entity>
 
-      <a-plane position="0 4 -8" rotation="90 0 0" width="7" height="15" color="#fff"></a-plane>
+    <a-entity 
+      gltf-model="./assets/bed.glb" 
+      position="-0.893 0.044 -1.954" 
+      rotation="0 180 0" 
+      scale="0.75 0.5 0.75">
+    </a-entity>
 
-      <!-- mur face ( porte) -->
+    <a-entity 
+      gltf-model="./assets/tablenuit.glb" 
+      position="-1.805 0.018 -1.212" 
+      rotation="0 180 0" 
+      scale="0.75 0.5 0.75">
+    </a-entity>
 
-      <a-box 
-        position="0 2 -7.5" 
-        depth="0.2" 
-        height="4" 
-        width="7" 
-        color="#fff"
-        material="src: ./assets/wallpaper.jpg">
-      </a-box>
+    <a-entity 
+      gltf-model="./assets/tablenuit.glb" 
+      position="1.111 0.044 -1.220" 
+      rotation="0 180 0" 
+      scale="0.75 0.5 0.75">
+    </a-entity>
 
-<!-- mur dos -->
+    <a-entity 
+      gltf-model="./assets/chessset.glb" 
+      position="1.108 0.528 -1.242" 
+      rotation="0 180 0" 
+      scale="0.5 0.5 0.5">
+    </a-entity>
 
-      <a-box 
-        position="0 2 -0.5" 
-        depth="0.2" 
-        height="4" 
-        width="7" 
-        color="#fff"
-        material="src: ./assets/wallpaper.jpg"></a-box>>
-      </a-box>
-      
-      <!-- mur droit -->
+    <a-entity 
+      gltf-model="./assets/rug.glb" 
+      position="1.190 0.047 -2.933" 
+      rotation="0 180 0" 
+      scale="0.5 0.5 0.5">
+    </a-entity>
 
-      <a-box 
-        position="3.5 2 -4" 
-        rotation="0 -90 0"
-        depth="0.2" 
-        height="4" 
-        width="7" 
-        color="#fff"
-        material="src: ./assets/wallpaper.jpg"></a-box>>
-      </a-box>
 
-      <!-- mur de gauche -->
+    <a-image 
+        src="./assets/kasparov.jpg" 
+        position="2.467 1.517 -3.650" 
+        rotation="0 90 2S"
+        width="1" 
+        height="1">
+      </a-image>
 
-      <a-box 
-        position="-3.5 2 -4" 
-        rotation="0 -90 0"
-        depth="0.2" 
-        height="4" 
-        width="7" 
-        color="#fff"
-        material="src: ./assets/wallpaper.jpg">>
-      </a-box>
-      
-      
       
       
       <!-- salle 2 -->
