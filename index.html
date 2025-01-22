@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
 </head>
   <body>
-    <a-scene fog="type: exponential; color: #000; density: 0.3" vr-mode-ui="enabled: true">
+    <a-scene fog="type: exponential; color: #000; density: 0.0" vr-mode-ui="enabled: true">
         <a-animation attribute="position" to="0-0.33 1.3 -1.80" dur="5000" repeat="indefinite"></a-animation>
 
         <a-assets>
@@ -54,11 +54,103 @@
       line="color: red"
     ></a-entity>
   </a-entity>
-      <!-- salle 1 - chambre -->
-       <!-- Zone de Collision. -->
-
-       
-     
+    
+      <!-- salle 2 - chambre -->      
+      <a-entity 
+      gltf-model="#piece" 
+      position="4.6 -0.019 1.8" 
+      rotation="0 180 0" 
+      scale="0.79 0.5 0.77"
+      visible="true">
+    </a-entity>
+  
+         <a-entity 
+         gltf-model="./assets/solm.glb" 
+         position="4.9 -0.422 1.570" 
+         rotation="0 0 0" 
+         scale="1.4 1.5 1"
+         visible="true">
+       </a-entity>
+  
+      <a-entity 
+        gltf-model="./assets/bed.glb" 
+        position="8.525 0.044 0" 
+        rotation="0 180 0" 
+        scale="0.75 0.5 0.75">
+      </a-entity>
+  
+      <a-entity 
+        gltf-model="./assets/tablenuit.glb" 
+        position="-1.805 0.018 0.740" 
+        rotation="0 180 0" 
+        scale="0.75 0.5 0.75">
+      </a-entity>
+  
+      <a-entity 
+         gltf-model="./assets/pill.glb" 
+         position="-1.90 0.46 0.66" 
+         rotation="0 0 0" 
+         scale="1 1 1">
+       </a-entity>
+       <a-entity 
+         gltf-model="./assets/pill.glb" 
+         position="-1.92 0.46 0.67" 
+         rotation="50 90 0" 
+         scale="1 1 1">
+       </a-entity>
+  
+       <a-entity 
+         gltf-model="./assets/pillbottle.glb" 
+         position="-1.84 0.46 0.66" 
+         rotation="0 0 0" 
+         scale="1 1 1">
+       </a-entity>
+  
+       <a-entity 
+         gltf-model="./assets/pill.glb" 
+         position="-1.87 0.46 0.66" 
+         rotation="0 0 0" 
+         scale="1 1 1">
+       </a-entity>
+  
+       <a-entity 
+         gltf-model="./assets/pillbottle.glb" 
+         position="-1.78 0.46 0.65" 
+         rotation="90 57 0" 
+         scale="1 1 1">
+       </a-entity>
+  
+      <a-entity 
+        gltf-model="./assets/tablenuit.glb" 
+        position="1.111 0.044 0.740" 
+        rotation="0 180 0" 
+        scale="0.75 0.5 0.75">
+      </a-entity>
+  
+      <a-entity 
+        gltf-model="./assets/chessset.glb" 
+        position="1.108 0.528 0.740" 
+        rotation="0 180 0" 
+        scale="0.5 0.5 0.5">
+      </a-entity>
+  
+      <a-entity 
+        gltf-model="./assets/rug.glb" 
+        position="1.190 0.047 -1.133" 
+        rotation="0 180 0" 
+        scale="0.5 0.5 0.5">
+      </a-entity>
+  
+  
+      <a-image 
+          src="./assets/kasparov.jpg" 
+          position="2.804 1.517 -3.650" 
+          rotation="0 90 2S"
+          width="1" 
+          height="1">
+        </a-image>
+  
+  
        <!-- Nav mesh. -->
       <a-entity
       nav-mesh
@@ -85,15 +177,6 @@
        scale="1.4 1.5 1"
        visible="true">
      </a-entity>
-
-     <a-entity 
-     gltf-model="./assets/chessboard.glb" 
-     position="-0.435 2.553 -3" 
-     rotation="180 0 0" 
-     scale="5 1 5">
-   </a-entity>
-
-  
 
     <a-entity 
       gltf-model="./assets/bed.glb" 
@@ -173,9 +256,19 @@
         height="1">
       </a-image>
 
+
+      <!-- pièces déchecs -->
+
+      <a-entity 
+      gltf-model="./assets/chessboard.glb" 
+      position="-0.435 2.553 -3" 
+      rotation="180 0 0" 
+      scale="5 1 5">
+    </a-entity>
+
       <a-entity 
        gltf-model="./assets/rookb.glb" 
-       position="-0.655 2.304 -3.979" 
+       position="-0.655 2.304 -4.468" 
        rotation="180 0 0" 
        scale="2.5 2.5 2.5">
      </a-entity>
@@ -188,32 +281,32 @@
      </a-entity>
 
      <a-entity 
-       gltf-model="./assets/pawnw.glb" 
-       position="-1.06 2.304 -3.979" 
+       gltf-model="./assets/bishopb.glb" 
+       position="-0.25 2.213 -2.4" 
        rotation="180 0 0" 
-       scale="1 1 1">
+       scale="2.5 2.5 2.5">
      </a-entity>
 
      <a-entity 
-       gltf-model="./assets/pawnw.glb" 
-       position="-1.8 2.304 -3.6" 
-       rotation="180 0 0" 
-       scale="1 1 1">
-     </a-entity>
+     gltf-model="./assets/pawnw.glb" 
+     position="-1.4 2.304 -3.979" 
+     rotation="180 0 0" 
+     scale="1 1 1">
+   </a-entity>
 
-     <a-entity 
-       gltf-model="./assets/pawnw.glb" 
-       position="-1.4 2.304 -3.979" 
-       rotation="180 0 0" 
-       scale="1 1 1">
-     </a-entity>
+   <a-entity 
+   gltf-model="./assets/pawnw.glb" 
+   position="-1.06 2.304 -3.979" 
+   rotation="180 0 0" 
+   scale="1 1 1">
+ </a-entity>
 
-     <a-entity 
-       gltf-model="./assets/queenw.glb" 
-       position="-0.25 2.05 -2.4" 
-       rotation="180 0 0" 
-       scale="0.20 0.2 0.2">
-     </a-entity>
+ <a-entity 
+   gltf-model="./assets/pawnw.glb" 
+   position="-1.8 2.304 -3.6" 
+   rotation="180 0 0" 
+   scale="1 1 1">
+ </a-entity>
 
      <a-entity 
      gltf-model="./assets/kingw.glb" 
@@ -221,6 +314,33 @@
      rotation="180 0 0" 
      scale="2 2 2">
    </a-entity>
+
+   <a-entity 
+   gltf-model="./assets/kingb.glb" 
+   position="-1.856 2.092 -2" 
+   rotation="180 0 0" 
+   scale="2 2 2">
+ </a-entity>
+
+ <a-entity 
+ gltf-model="./assets/pawnb.glb" 
+ position="-1.856 2.304 -2.35" 
+ rotation="180 0 0" 
+ scale="2 2 2">
+</a-entity>
+
+<a-entity 
+gltf-model="./assets/pawnb.glb" 
+position="-1.09 2.304 -2.35" 
+rotation="180 0 0" 
+scale="2 2 2">
+</a-entity>
+<a-entity 
+gltf-model="./assets/pawnb.glb" 
+position="-1.40 2.304 -2" 
+rotation="180 0 0" 
+scale="2 2 2">
+</a-entity>
       
       <!-- salle 2 -->
 
