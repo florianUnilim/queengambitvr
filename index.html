@@ -15,14 +15,45 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
     <script>
-      AFRAME.registerComponent("cursor-listener", {
-        init : function () {
-          this.el.addEventListener("click",function (evt) {
-            this.setAttribute("visible", true);
-          }.bind(this));
-        } 
+      AFRAME.registerComponent('show-chess', {
+        init: function () {
+          this.el.addEventListener('click', () => {
+            let pieces = document.querySelectorAll('.chess-piece');
+            let fadePlane = document.querySelector('#fadePlane');
+            let rig = document.querySelector('#rig');
+            let camera = document.querySelector('[camera]');
+    
+            // Position et rotation du spawn (à ajuster selon ton projet)
+            let spawnPosition = new THREE.Vector3(-0.33, 1.3, 0);  
+            let spawnRotation = new THREE.Euler(0, Math.PI, 0); // Rotation en radians
+    
+            // 1. Activer le fondu noir (attacher à la caméra)
+            fadePlane.setAttribute('visible', 'true');
+            fadePlane.setAttribute('animation', 'property: material.opacity; from: 0; to: 1; dur: 1000;');
+    
+            // 2. Attendre la fin du fondu noir
+            setTimeout(() => {
+              // Afficher les pièces d'échecs
+              pieces.forEach(piece => piece.setAttribute('visible', 'true'));
+    
+              // 3. Téléporter l'utilisateur exactement au spawn
+              rig.object3D.position.copy(spawnPosition);
+              rig.object3D.rotation.set(spawnRotation.x, spawnRotation.y, spawnRotation.z);
+              
+              // 4. Dissiper le fondu noir
+              fadePlane.setAttribute('animation', 'property: material.opacity; from: 1; to: 0; dur: 1000;');
+    
+              // Cacher le fondu noir après l'animation
+              setTimeout(() => {
+                fadePlane.setAttribute('visible', 'false');
+              }, 1000);
+            }, 1000); // Attendre 1s pour le fondu noir
+          });
+        }
       });
     </script>
+    
+    
 
 </head>
   <body>
@@ -47,9 +78,15 @@
       camera
       position="-0.33 1.3 0"
       
-      look-controls="pointerLockEnabled: true"
-          
+      look-controls="pointerLockEnabled: true"     
     >
+    <a-plane 
+      id="fadePlane"
+      material="color: black; shader: flat; opacity: 0"
+      position="0 0 -0.1"
+      width="2" height="2"
+      visible="false">
+    </a-plane>
       <a-cursor></a-cursor>
     </a-entity>
     <a-entity
@@ -68,7 +105,14 @@
     
       <!-- salle 2 - chambre -->      
 
-  
+      <a-entity 
+      id="fadePlane"
+      geometry="primitive: plane; height: 2; width: 2"
+      material="color: black; shader: flat; opacity: 0"
+      position="0 1.5 -1"
+      rotation="0 0 0"
+      visible="false">
+    </a-entity>
        <!-- Nav mesh. -->
       <a-entity
       nav-mesh
@@ -110,42 +154,57 @@
       scale="0.75 0.5 0.75">
     </a-entity>
 
-    <a-entity>
+    
     <a-entity 
+    class="clickable"
+  event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pill.glb" 
        position="-1.90 0.46 0.66" 
        rotation="0 0 0" 
-       scale="1 1 1">
+       scale="1 1 1"
+       show-chess>
 
-     </a-entity cursor-listener class="clickable">
-     <a-entity 
+     </a-entity >
+     <a-entity
+     class="clickable"
+  event-set__click="_target: .chess-piece; visible: true" 
        gltf-model="./assets/pill.glb" 
        position="-1.92 0.46 0.67" 
        rotation="50 90 0" 
-       scale="1 1 1">
+       scale="1 1 1"
+       show-chess>
      </a-entity>
 
      <a-entity 
+     class="clickable"
+  event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pillbottle.glb" 
        position="-1.84 0.46 0.66" 
        rotation="0 0 0" 
-       scale="1 1 1">
+       scale="1 1 1"
+       show-chess>
      </a-entity>
 
      <a-entity 
+     class="clickable"
+  event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pill.glb" 
        position="-1.87 0.46 0.66" 
        rotation="0 0 0" 
-       scale="1 1 1">
+       scale="1 1 1"
+       show-chess>
      </a-entity>
 
      <a-entity 
+     class="clickable"
+  event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pillbottle.glb" 
        position="-1.78 0.46 0.65" 
        rotation="90 57 0" 
-       scale="1 1 1">
+       scale="1 1 1"
+       show-chess>
      </a-entity>
-    </a-entity>
+    
 
     <a-entity 
       gltf-model="./assets/tablenuit.glb" 
@@ -183,8 +242,8 @@
 
   
       <a-entity 
-      class="clickable" 
-      cursor-listener visible="false"
+      class="chess-piece" 
+      visible="false"
       gltf-model="./assets/chessboard.glb" 
       position="-0.435 2.553 -3" 
       rotation="180 0 0" 
@@ -192,8 +251,8 @@
     </a-entity>
 
       <a-entity 
-      class="clickable"
-       cursor-listener visible="false"
+      class="chess-piece" 
+      visible="false"
        gltf-model="./assets/rookb.glb" 
        position="-0.655 2.304 -4.468" 
        rotation="180 0 0" 
@@ -201,8 +260,8 @@
      </a-entity>
 
      <a-entity
-     class="clickable" 
-     cursor-listener visible="false" 
+      class="chess-piece" 
+      visible="false"
        gltf-model="./assets/knightw.glb" 
        position="0.129 2.347 -3.653" 
        rotation="180 0 0" 
@@ -210,8 +269,8 @@
      </a-entity>
 
      <a-entity 
-     class="clickable" 
-     cursor-listener visible="false"
+      class="chess-piece" 
+      visible="false"
        gltf-model="./assets/bishopb.glb" 
        position="-0.25 2.213 -2.4" 
        rotation="180 0 0" 
@@ -219,8 +278,8 @@
      </a-entity>
 
      <a-entity 
-     class="clickable" 
-     cursor-listener visible="false"
+     class="chess-piece" 
+     visible="false"
      gltf-model="./assets/pawnw.glb" 
      position="-1.4 2.304 -3.979" 
      rotation="180 0 0" 
@@ -228,8 +287,8 @@
    </a-entity>
 
    <a-entity 
-   class="clickable" 
-   cursor-listener visible="false"
+   class="chess-piece" 
+   visible="false"
    gltf-model="./assets/pawnw.glb" 
    position="-1.06 2.304 -3.979" 
    rotation="180 0 0" 
@@ -237,8 +296,8 @@
  </a-entity>
 
  <a-entity 
- class="clickable" 
- cursor-listener visible="false"
+ class="chess-piece" 
+  visible="false"
    gltf-model="./assets/pawnw.glb" 
    position="-1.8 2.304 -3.6" 
    rotation="180 0 0" 
@@ -246,8 +305,8 @@
  </a-entity>
 
      <a-entity 
-     class="clickable" 
-     cursor-listener visible="false"
+     class="chess-piece" 
+  visible="false"
      gltf-model="./assets/kingw.glb" 
      position="-1.856 2.092 -4.468" 
      rotation="180 0 0" 
@@ -255,8 +314,8 @@
    </a-entity>
 
    <a-entity 
-   class="clickable" 
-   cursor-listener visible="false"
+   class="chess-piece" 
+  visible="false"
    gltf-model="./assets/kingb.glb" 
    position="-1.856 2.092 -2" 
    rotation="180 0 0" 
@@ -264,8 +323,8 @@
  </a-entity>
 
  <a-entity 
- class="clickable" 
- cursor-listener visible="false"
+ class="chess-piece" 
+  visible="false"
  gltf-model="./assets/pawnb.glb" 
  position="-1.856 2.304 -2.35" 
  rotation="180 0 0" 
@@ -273,8 +332,8 @@
 </a-entity>
 
 <a-entity 
-class="clickable" 
-cursor-listener visible="false"
+class="chess-piece" 
+  visible="false"
 gltf-model="./assets/pawnb.glb" 
 position="-1.09 2.304 -2.35" 
 rotation="180 0 0" 
@@ -282,8 +341,8 @@ scale="2 2 2">
 </a-entity>
 
 <a-entity 
-class="clickable" 
-cursor-listener visible="false"
+class="chess-piece" 
+  visible="false"
 gltf-model="./assets/pawnb.glb" 
 position="-1.40 2.304 -2" 
 rotation="180 0 0" 
