@@ -19,46 +19,46 @@
         init: function () {
           let el = this.el;
     
-          // Ajoute un écouteur pour les clics normaux (souris et écran)
           el.addEventListener('click', () => this.triggerAction());
-    
-          // Ajoute un écouteur pour les manettes VR (quand on appuie sur la gâchette)
           el.addEventListener('triggerdown', () => this.triggerAction());
         },
     
         triggerAction: function () {
           let dialogBox = document.querySelector('#dialogBox');
           let dialogBox2 = document.querySelector('#dialogBox2');
+          let pills = document.querySelectorAll('.pills'); // Sélectionne les pilules
           let pieces = document.querySelectorAll('.chess-piece');
           let fadePlane = document.querySelector('#fadePlane');
           let rig = document.querySelector('#rig');
     
-          // Position et rotation du spawn (à ajuster selon ton projet)
           let spawnPosition = new THREE.Vector3(-0.33, 0, 0);
-          let spawnRotation = new THREE.Euler(0, Math.PI, 0); // Rotation en radians
+          let spawnRotation = new THREE.Euler(0, Math.PI, 0); 
     
-          // 1️⃣ Cacher la boîte de dialogue immédiatement
+          // Cacher la boîte de dialogue et afficher la suivante après 1s
           if (dialogBox) {
             dialogBox.setAttribute('visible', 'false');
             setTimeout(() => {
-        dialogBox2.setAttribute('visible', 'true');
-      }, 1000);
+              dialogBox2.setAttribute('visible', 'true');
+            }, 1000);
           }
     
-          // 2️⃣ Activer le fondu noir
+          // Cacher les pilules
+          pills.forEach(pill => pill.setAttribute('visible', 'false'));
+    
+          // Activer le fondu noir
           fadePlane.setAttribute('visible', 'true');
           fadePlane.setAttribute('animation', 'property: material.opacity; from: 0; to: 1; dur: 1000;');
     
-          // 3️⃣ Attendre la fin du fondu noir
+          // Attendre la fin du fondu noir
           setTimeout(() => {
             // Afficher les pièces d'échecs
             pieces.forEach(piece => piece.setAttribute('visible', 'true'));
     
-            // 4️⃣ Téléporter l'utilisateur exactement au spawn
+            // Téléporter l'utilisateur exactement au spawn
             rig.object3D.position.copy(spawnPosition);
             rig.object3D.rotation.set(spawnRotation.x, spawnRotation.y, spawnRotation.z);
     
-            // 5️⃣ Dissiper le fondu noir
+            // Dissiper le fondu noir
             fadePlane.setAttribute('animation', 'property: material.opacity; from: 1; to: 0; dur: 1000;');
     
             // Cacher le fondu noir après l'animation
@@ -69,6 +69,7 @@
         }
       });
     </script>
+    
     
     
     
@@ -219,7 +220,7 @@
 
     
     <a-entity 
-    class="clickable"
+    class="clickable pills"
   event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pill.glb" 
        position="-1.90 0.46 0.66" 
@@ -229,7 +230,7 @@
 
      </a-entity >
      <a-entity
-     class="clickable"
+     class="clickable  pills"
   event-set__click="_target: .chess-piece; visible: true" 
        gltf-model="./assets/pill.glb" 
        position="-1.92 0.46 0.67" 
@@ -239,7 +240,7 @@
      </a-entity>
 
      <a-entity 
-     class="clickable"
+     class="clickable  pills"
   event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pillbottle.glb" 
        position="-1.84 0.46 0.66" 
@@ -249,7 +250,7 @@
      </a-entity>
 
      <a-entity 
-     class="clickable"
+     class="clickable  pills"
   event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pill.glb" 
        position="-1.87 0.46 0.66" 
@@ -259,7 +260,7 @@
      </a-entity>
 
      <a-entity 
-     class="clickable"
+     class="clickable  pills"
   event-set__click="_target: .chess-piece; visible: true"
        gltf-model="./assets/pillbottle.glb" 
        position="-1.78 0.46 0.65" 
