@@ -43,7 +43,7 @@
           }
     
           // Cacher les pilules
-          pills.forEach(pill => pill.setAttribute('visible', 'false'));
+         
     
           // Activer le fondu noir
           fadePlane.setAttribute('visible', 'true');
@@ -53,6 +53,7 @@
           setTimeout(() => {
             // Afficher les pièces d'échecs
             pieces.forEach(piece => piece.setAttribute('visible', 'true'));
+            pills.forEach(pill => pill.setAttribute('visible', 'false'));
     
             // Téléporter l'utilisateur exactement au spawn
             rig.object3D.position.copy(spawnPosition);
@@ -80,7 +81,8 @@
     <a-scene fog="type: exponential; color: #000; density: 0.3" vr-mode-ui="enabled: true">
         <a-animation attribute="position" to="0-0.33 1.3 -1.80" dur="5000" repeat="indefinite"></a-animation>
         
-
+        <a-plane id="" position="0 1 -5.23" rotation="0 0 0" width="3" height="3" color="white" ></a-plane>
+        <!-- <a-entity light="color: #fff; intensity: 1.5" position="0 3 0" rotation="0 0 0"></a-entity> -->
         <a-entitY
        gltf-model="./assets/board.glb" 
        position="2.707 1 -1.055" 
@@ -88,16 +90,34 @@
        scale="2 2 2">
   </a-entitY>
 
-        <a-entity id="dialogBox" visible="true" geometry="primitive: plane; height: 0.5; width: 1.5" 
+        <!-- <a-entity id="dialogBox" visible="true" geometry="primitive: plane; height: 0.5; width: 1.5" 
         material=""
         position="2.747 1.460 -1.325"
-        rotation="0 -90 0"
-        text="value: [Quete principale]
-        Un esprit trouble
-        Objectif : Prenez vos pilules de Xanzolam pour retrouver vos esprits.; color: black ; align: center">
-        </a-entity>
+        rotation="0 -90 0">
+        </a-entity> -->
 
-        <a-entity id="dialogBox2"visible="false"  geometry="primitive: plane; width: 0.5; height: 1.5" 
+        <a-image 
+        id="dialogBox"
+        visible="true"
+        src="./assets/textbloc1.png" 
+        position="2.747 1.460 -1.030" 
+        rotation="0 -90 0"
+        width="2"
+        height="0.5"
+        >
+      </a-image>
+      <a-image 
+        id="dialogBox2"
+        visible="false"
+        src="./assets/textbloc2.png" 
+        position="2.747 1.460 -1.030" 
+        rotation="0 -90 0"
+        width="2"
+        height="0.5"
+        >
+      </a-image>
+
+        <!-- <a-entity id="dialogBox2"visible="false"  geometry="primitive: plane; width: 0.5; height: 1.5" 
           material="" 
           position="2.747 1.460 -1.325" 
           rotation="0 -90 0"
@@ -106,13 +126,13 @@
           Je dois me souvenir...\nCette partie au plafond...\nPassons par la porte pour voir la suite !;
           align : center; color : black; width:1.8">
   </text>
-</a-entity>
+</a-entity> -->
 
         <a-image 
-        src="./assets/chesspartie.jpg" 
-        position="2.705 2.009 -0.227" 
+        src="./assets/tuto.png" 
+        position="2.705 1.887 -0.466" 
         rotation="0 -90 0"
-        scale="0.5 0.5 0.5"
+        
         width="1" 
         height="1">
       </a-image>
@@ -120,12 +140,12 @@
         <a-assets>
         <a-asset-item
        id="navmesh"
-       src="./assets/navmesh.glb"
+       src="./assets/navmesh2.glb"
      ></a-asset-item>
 
      <a-asset-item
           id="piece"
-          src="./assets/mur2.glb"
+          src="./assets/mur3.glb"
         ></a-asset-item>
       </a-assets>
     </a-assets>
@@ -175,6 +195,7 @@
       rotation="0 0 0"
       visible="false">
     </a-entity>
+
        <!-- Nav mesh. -->
       <a-entity
       nav-mesh
@@ -203,6 +224,28 @@
        scale="1.4 1.5 1"
        visible="true">
      </a-entity>
+
+     <a-entity 
+       gltf-model="./assets/lamp.glb" 
+       position="-1.805 0.672 0.840" 
+       rotation="0 0 0" 
+       scale="1 1 1 ">
+     </a-entity>
+
+     <a-entity 
+     gltf-model="./assets/lampbulb.glb" 
+     position="-0.417 2.633 -8.994" 
+     rotation="0 0 0" 
+     scale="0.1 0.1 0.1 ">
+   </a-entity>
+
+     <a-entity 
+     gltf-model="./assets/solpiece2.glb" 
+     position="3.292 -0.422 -20.662" 
+     rotation="0 0 0" 
+     scale="0.75 0.75 0.75"
+     visible="true">
+   </a-entity>
 
     <a-entity 
       gltf-model="./assets/bed.glb" 
