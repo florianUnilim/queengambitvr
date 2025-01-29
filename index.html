@@ -78,7 +78,7 @@
 
 </head>
   <body>
-    <a-scene fog="type: exponential; color: #000; density: 0.3" vr-mode-ui="enabled: true">
+    <a-scene fog="type: exponential; color: #000; density: 0.0" vr-mode-ui="enabled: true">
         <a-animation attribute="position" to="0-0.33 1.3 -1.80" dur="5000" repeat="indefinite"></a-animation>
         
         <a-plane id="" position="0 1 -5.23" rotation="0 0 0" width="3" height="3" color="white" ></a-plane>
@@ -242,10 +242,21 @@
    </a-entity>
 
    <a-entity 
+   class="pills"
+   visible="true"
      gltf-model="./assets/closet.glb" 
-     position="-0.395 0 -4.612" 
+     position="-0.395 0 -4.687" 
      rotation="0 0 0" 
-     scale="1 1 1 ">
+     scale="1.2 1 1 ">
+   </a-entity>
+
+   <a-entity 
+   class="chess-piece"
+   visible="false"
+     gltf-model="./assets/closet.glb" 
+     position="1.5 0 -4.687" 
+     rotation="0 0 0" 
+     scale="1.2 1 1 ">
    </a-entity>
 
      <a-entity 
