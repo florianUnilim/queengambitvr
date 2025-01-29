@@ -150,10 +150,12 @@
       </a-assets>
     </a-assets>
 
-<a-entity id="rig" movement-controls="constrainToNavMesh: true;"  >
+<a-entity id="rig" movement-controls=" speed: 0.15 ; constrainToNavMesh: true;" >
     <a-entity
       camera
       position="-0.33 1.3 0"
+      speed="0.3"
+      
       
       look-controls="pointerLockEnabled: true"     
     >
@@ -237,6 +239,13 @@
      position="-0.417 2.633 -8.994" 
      rotation="0 0 0" 
      scale="0.1 0.1 0.1 ">
+   </a-entity>
+
+   <a-entity 
+     gltf-model="./assets/closet.glb" 
+     position="-0.395 0 -4.612" 
+     rotation="0 0 0" 
+     scale="1 1 1 ">
    </a-entity>
 
      <a-entity 
