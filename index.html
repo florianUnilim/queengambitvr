@@ -28,6 +28,7 @@
         let fadePlane = document.querySelector('#fadePlane');
         let rig = document.querySelector('#rig');
 
+
         let spawnPosition = new THREE.Vector3(-0.33, 0, 0);
         let spawnRotation = new THREE.Euler(0, Math.PI, 0);
 
@@ -39,27 +40,25 @@
           }, 1000);
         }
 
-        // Cacher les pilules
+  
 
 
-        // Activer le fondu noir
+        // fondu noir
         fadePlane.setAttribute('visible', 'true');
         fadePlane.setAttribute('animation', 'property: material.opacity; from: 0; to: 1; dur: 1000;');
 
-        // Attendre la fin du fondu noir
+
         setTimeout(() => {
           // Afficher les pièces d'échecs
           pieces.forEach(piece => piece.setAttribute('visible', 'true'));
           pills.forEach(pill => pill.setAttribute('visible', 'false'));
 
-          // Téléporter l'utilisateur exactement au spawn
+          // Téléporter lau spawn
           rig.object3D.position.copy(spawnPosition);
           rig.object3D.rotation.set(spawnRotation.x, spawnRotation.y, spawnRotation.z);
 
-          // Dissiper le fondu noir
           fadePlane.setAttribute('animation', 'property: material.opacity; from: 1; to: 0; dur: 1000;');
 
-          // Cacher le fondu noir après l'animation
           setTimeout(() => {
             fadePlane.setAttribute('visible', 'false');
           }, 1000);
@@ -76,7 +75,7 @@
 </head>
 
 <body>
-  <a-scene fog="type: exponential; color: #000; density: 0.2" vr-mode-ui="enabled: true">
+  <a-scene fog="type: exponential; color: #000; density: 0.3" vr-mode-ui="enabled: true">
 
     <a-animation attribute="position" to="0-0.33 1.3 -1.80" dur="5000" repeat="indefinite"></a-animation>
 
@@ -166,10 +165,83 @@
     <a-entity gltf-model="./assets/table.glb" position="-0.417 0 -8.994" rotation="0 0 0" scale="0.1 0.1 0.1 ">
     </a-entity>
 
+    <a-entity gltf-model="./assets/chessplayer.glb" position="-0.417 0 -10" rotation="0 0 0" scale="0.9 0.9 0.9">
+    </a-entity>
+
     <a-light type="spot" color="yellow" position="1.959 -1.195 -1.161" rotation="60 -90 0" angle="34.760" scale="0.1 0.1 0.1 " >
     </a-light>
+
     <a-light type="ambient" intensity="0.3"  position="0 0 0" rotation="0 0 0" scale="0.1 0.1 0.1 ">
     </a-light>
+
+     <!-- pièces déchecs piece 2 -->
+
+
+
+     <a-entity class=""  gltf-model="./assets/chessboard.glb" position="-0.417 0.75 -8.994"
+     rotation="0 90 0" scale="1.5 0.5 1.5">
+   </a-entity>
+
+   <a-entity class=".rook" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -8.56"
+     rotation="0 0 0" scale="0.5 0.5 0.5">
+
+   </a-entity>
+   <a-entity class=".rook" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -9.4"
+     rotation="0 0 0" scale="0.5 0.5 0.5">
+
+   </a-entity>
+
+   <a-entity class=""  gltf-model="./assets/pawnb.glb" position="-0.72 0.82 -8.68"
+   rotation="0 0 0" scale="0.4 0.4 0.4">
+ </a-entity>
+
+ <a-entity class=""  gltf-model="./assets/pawnb.glb" position="-0.84 0.82 -8.80"
+   rotation="0 0 0" scale="0.4 0.4 0.4">
+ </a-entity>
+
+ <a-entity class=""  gltf-model="./assets/pawnb.glb" position="-0.60 0.82 -8.80"
+   rotation="0 0 0" scale="0.4 0.4 0.4">
+ </a-entity>
+
+
+ <a-entity class=""  gltf-model="./assets/bishopb.glb" position="-0.36 0.82 -8.80"
+ rotation="0 0 0" scale="0.5 0.5 0.5">
+</a-entity>
+
+
+   <a-entity class=""  gltf-model="./assets/kingb.glb" position="-0.84 0.88 -8.68"
+   rotation="0 0 0" scale="0.5 0.5 0.5">
+ </a-entity>
+
+
+ <a-entity class=""  gltf-model="./assets/kingw.glb" position="-0.84 0.88 -9.4"
+     rotation="0 0 0" scale="0.5 0.5 0.5">
+   </a-entity>
+
+
+   <a-entity class=""  gltf-model="./assets/knightw.glb" position="-0.24 0.82 -9.16"
+     rotation="0 0 0" scale="0.06 0.06 0.06">
+   </a-entity>
+
+   <a-entity class=""  gltf-model="./assets/pawnw.glb" position="-0.84 0.82 -9.16"
+     rotation="0 0 0" scale="0.15 0.15 0.15">
+   </a-entity>
+
+   <a-entity class=""  gltf-model="./assets/pawnw.glb" position="-0.72 0.82 -9.28"
+     rotation="0 0 0" scale="0.15 0.15 0.15">
+   </a-entity>
+
+   <a-entity class=""  gltf-model="./assets/pawnw.glb" position="-0.60 0.82 -9.28"
+     rotation="0 0 0" scale="0.15 0.15 0.15">
+   </a-entity>
+
+   
+
+  
+
+  
+
+
 
 <!-- closet  -->
     <a-entity class="pills" visible="true" gltf-model="./assets/closet.glb" position="-0.395 0 -4.687" rotation="0 0 0"
@@ -187,9 +259,7 @@
     <a-entity gltf-model="./assets/bed.glb" position="-0.893 0.044 0" rotation="0 180 0" scale="0.75 0.5 0.75">
     </a-entity>
 
-    <a-entity gltf-model="./assets/tablenuit.glb" position="-1.805 0.018 0.740" rotation="0 180 0"
-      scale="0.75 0.5 0.75">
-    </a-entity>
+
 
 <!-- pills -->
     <a-entity class="clickable pills" event-set__click="_target: .chess-piece; visible: true"
@@ -212,6 +282,10 @@
       gltf-model="./assets/pillbottle.glb" position="-1.78 0.46 0.65" rotation="90 57 0" scale="1 1 1" show-chess>
     </a-entity>
 <!--  -->
+
+<a-entity gltf-model="./assets/tablenuit.glb" position="-1.805 0.018 0.740" rotation="0 180 0"
+scale="0.75 0.5 0.75">
+</a-entity>
 
     <a-entity gltf-model="./assets/tablenuit.glb" position="1.111 0.044 0.740" rotation="0 180 0" scale="0.75 0.5 0.75">
     </a-entity>
@@ -282,6 +356,9 @@
     </a-entity>
 
 
+    
+
+    
     
   </a-scene>
 
