@@ -66,51 +66,63 @@
           }, 1000);
         }, 1000);
       }
-    });
-  </script>
 
-<!-- <script>
-  AFRAME.registerComponent('move-rook', {
-    init: function () {
-      let el = this.el;
-
-      // Lorsque la tour est cliquée
-      el.addEventListener('click', () => {
-        this.triggerAction();
-      });
-      el.addEventListener('triggerdown', () => {
-        this.triggerAction();
-      });
-    },
-
-    triggerAction: function () {
-      let rook1 = document.querySelector('#rook1');
-      let rook2 = document.querySelector('#rook2');
-      let endScreen = document.querySelector('#endScreen');
-      let video = document.querySelector('#video');
-
-      // Vérifier si les éléments existent avant de les manipuler
-      if (rook1 && rook2 && endScreen) {
-        // Faire disparaître la tour visible (rook1) et afficher l'autre (rook2)
-        rook1.setAttribute('visible', 'false');
-        rook2.setAttribute('visible', 'true');
-
-        // Afficher l'écran de fin avec animation
-        endScreen.setAttribute('visible', 'true');
-        endScreen.setAttribute('animation', 'property: material.opacity; from: 0; to: 1; dur: 1000;');
-
-        // Démarrer la vidéo après un petit délai
-        setTimeout(() => {
-          video.play(); // Démarrer la vidéo
-        }, 1000); // Attendre 1 seconde pour être sûr que l'écran s'affiche
-      } else {
-        console.error("Certains éléments n'ont pas été trouvés : rook1, rook2, endScreen ou video.");
-      }
-    }
   });
-</script> -->
 
 
+//   </script>
+// <script>
+//   document.addEventListener('DOMContentLoaded', function () {
+//   AFRAME.registerComponent('swap-rook', {
+//     init: function () {
+//       let el = this.el;
+//       console.log("Component initialized");
+
+//       // Ajouter un écouteur d'événement pour le click
+//       el.addEventListener('click', () => this.swapRook());
+//     },
+
+//     swapRook: function () {
+//       // Sélectionner les éléments
+//       let rook1 = document.querySelector('.rook1');
+//       let rook2 = document.querySelector('.rook2');
+//       let fadePlane = document.querySelector('#fadePlane');
+
+//       // Vérification si les éléments existent
+//       if (rook1 && rook2 && fadePlane) {
+//         // Affichage des éléments dans la console pour s'assurer qu'ils sont bien trouvés
+//         console.log("rook1: ", rook1, "rook2: ", rook2, "fadePlane: ", fadePlane);
+
+//         // Si rook1 est visible, on fait l'échange
+//         if (rook1.getAttribute('visible') === 'true') {
+//           console.log("Rook1 cliquée, échange avec Rook2...");
+
+//           // Faire disparaître rook1 et afficher rook2
+//           rook1.setAttribute('visible', 'false');
+//           rook2.setAttribute('visible', 'true');
+
+//           // Lancer le fondu noir
+//           fadePlane.setAttribute('visible', 'true');
+//           fadePlane.setAttribute('animation', 'property: material.opacity; from: 0; to: 1; dur: 1000;');
+
+//           // Changer l'opacité après un certain délai
+//           setTimeout(() => {
+//             console.log("Fondu noir en cours...");
+//             fadePlane.setAttribute('animation', 'property: material.opacity; from: 1; to: 0; dur: 1000;');
+            
+//             setTimeout(() => {
+//               fadePlane.setAttribute('visible', 'false');
+//               console.log("Fondu terminé, écran de fin caché.");
+//             }, 1000);  // Après 1 seconde, cacher fadePlane
+//           }, 2000);  // Attendre 2 secondes avant de commencer le fondu
+//         }
+//       } else {
+//         console.error("Les éléments rook1, rook2 ou fadePlane sont introuvables.");
+//       }
+//     }
+//   });
+// });
+// </script>
 
 
 </head>
@@ -242,12 +254,13 @@
      rotation="0 90 0" scale="1.5 0.5 1.5">
    </a-entity>
 
-   <a-entity id="rook1" class="chess-piece rook" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -8.56"
-     rotation="0 0 0" scale="0.5 0.5 0.5">
-
-   </a-entity>
-   <a-entity id="rook2" class="chess-piece rook" visible="false" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -9.4"
-     rotation="0 0 0" scale="0.5 0.5 0.5">
+   <a-entity id="rook1" class="rook1" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -8.56"
+    rotation="0 0 0" scale="0.5 0.5 0.5" cursor-listener>
+  </a-entity>
+  
+  <a-entity id="rook2" class="rook2" visible="false" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -9.4"
+    rotation="0 0 0" scale="0.5 0.5 0.5" cursor-listener>
+  </a-entity>
 
    </a-entity>
 
