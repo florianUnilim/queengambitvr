@@ -27,6 +27,7 @@
         let pieces = document.querySelectorAll('.chess-piece');
         let fadePlane = document.querySelector('#fadePlane');
         let rig = document.querySelector('#rig');
+        
 
 
         let spawnPosition = new THREE.Vector3(-0.33, 0, 0);
@@ -67,7 +68,46 @@
     });
   </script>
 
+<!-- <script>
+  AFRAME.registerComponent('move-rook', {
+    init: function () {
+      let el = this.el;
 
+      // Lorsque la tour est cliquée
+      el.addEventListener('click', () => {
+        this.triggerAction();
+      });
+      el.addEventListener('triggerdown', () => {
+        this.triggerAction();
+      });
+    },
+
+    triggerAction: function () {
+      let rook1 = document.querySelector('#rook1');
+      let rook2 = document.querySelector('#rook2');
+      let endScreen = document.querySelector('#endScreen');
+      let video = document.querySelector('#video');
+
+      // Vérifier si les éléments existent avant de les manipuler
+      if (rook1 && rook2 && endScreen) {
+        // Faire disparaître la tour visible (rook1) et afficher l'autre (rook2)
+        rook1.setAttribute('visible', 'false');
+        rook2.setAttribute('visible', 'true');
+
+        // Afficher l'écran de fin avec animation
+        endScreen.setAttribute('visible', 'true');
+        endScreen.setAttribute('animation', 'property: material.opacity; from: 0; to: 1; dur: 1000;');
+
+        // Démarrer la vidéo après un petit délai
+        setTimeout(() => {
+          video.play(); // Démarrer la vidéo
+        }, 1000); // Attendre 1 seconde pour être sûr que l'écran s'affiche
+      } else {
+        console.error("Certains éléments n'ont pas été trouvés : rook1, rook2, endScreen ou video.");
+      }
+    }
+  });
+</script> -->
 
 
 
@@ -79,6 +119,15 @@
 
     <a-animation attribute="position" to="0-0.33 1.3 -1.80" dur="5000" repeat="indefinite"></a-animation>
 
+    <a-assets>
+      <!-- Charger un fichier audio -->
+      <audio id="backgroundMusic" src="assets/musique.mp3" preload="auto"></audio>
+    </a-assets>
+  
+    <!-- Entité pour afficher la musique -->
+    <a-entity sound="src: #backgroundMusic; autoplay: true; loop: true; volume: 1 ;" position="0 0 0"></a-entity>
+
+    
     <a-sky color="#000"></a-sky>
 
     <!-- <a-plane id="" position="0 1 -5.23" rotation="0 0 0" width="3" height="3" color="white"></a-plane> -->
@@ -110,7 +159,7 @@
 
     <a-entity id="rig" movement-controls=" speed: 0.15 ; constrainToNavMesh: true;">
 
-      <a-entity camera position="-0.33 1.3 0" speed="0.3" look-controls="pointerLockEnabled: true">
+      <a-entity camera position="-0.33 1.3 0" speed="0.3" look-controls="pointerLockEnabled: true" >
 
         <a-plane id="fadePlane" material="color: black; shader: flat; opacity: 0" position="0 0 -0.1" width="2"
           height="2" visible="false">
@@ -176,17 +225,23 @@
 
      <!-- pièces déchecs piece 2 -->
 
-
+     <a-plane id="endScreen" position="0 2 -4" width="16" height="9" 
+     material="color: black" visible="false">
+    <!-- <a-video src="#video" position="0 0 0" width="16" height="9"></a-video> -->
+    </a-plane>
+    <a-assets>
+    <!-- <video id="video" src="path_to_video.mp4" autoplay="false" loop="false"></video> -->
+    </a-assets>
 
      <a-entity class=""  gltf-model="./assets/chessboard.glb" position="-0.417 0.75 -8.994"
      rotation="0 90 0" scale="1.5 0.5 1.5">
    </a-entity>
 
-   <a-entity class=".rook" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -8.56"
+   <a-entity id="rook1" class="chess-piece rook" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -8.56"
      rotation="0 0 0" scale="0.5 0.5 0.5">
 
    </a-entity>
-   <a-entity class=".rook" visible="true" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -9.4"
+   <a-entity id="rook2" class="chess-piece rook" visible="false" gltf-model="./assets/rookb.glb" position="-0.48 0.82 -9.4"
      rotation="0 0 0" scale="0.5 0.5 0.5">
 
    </a-entity>
